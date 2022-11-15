@@ -1,0 +1,23 @@
+.container {
+  background-color: var(--clr-off-grey);
+  width: min(100% - 20px, 800px);
+  height: 100vh;
+  margin-inline: auto;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+.message {
+  display: flex;
+  height: 100vh;
+}
+
+@media (max-width: 680px) {
+  .message {
+    flex-direction: column;
+    /* align-items: center; */
+  }
+}

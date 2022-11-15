@@ -1,0 +1,38 @@
+.header {
+  width: 100%;
+  padding: 13px;
+  margin-inline: auto;
+  max-width: 800px;
+  background-color: var(--clr-header);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex;
+}
+.header_left {
+  display: flex;
+  gap: 0.6em;
+  align-items: center;
+}
+.header h2 {
+  color: var(--clr-off-white);
+  font-weight: 600;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.span {
+  font-weight: 800;
+  color: var(--clr-dark-blue);
+}
+.icon:nth-child(1) {
+  padding-left: .5em;
+}
+.icon {
+  color: white;
+  font-size: 1.3em;
+}
+.icon:hover {
+  color: var(--clr-dark-blue);
+  opacity: 0.4;
+  transition: .2s ease-in-out;
+}

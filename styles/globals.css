@@ -1,26 +1,44 @@
-html,
-body {
-  padding: 0;
+@font-face {
+  font-family: "Poppins", sans-serif;
+  src: url("../public/fonts/Poppins/Poppins-Black.woff");
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
+  /* outline: 1px solid red; */
+}
+:root {
+  --clr-off-white: #e5e5e5;
+  --clr-off-grey: #dcdcdc;
+  --clr-dark-grey: #7E7878;
+  --clr-header: #83A9CC;
+  --clr-btn: #59748c;
+  --clr-dark-blue: #2c3843;
+  --clr-dark-blue-opa: #2c38433d;
+  --ff-font-family: "Poppins", "serif";
 }
 
+body {
+  font-family: var(--ff-font-family);
+  background-color: rgb(211, 211, 211);
+}
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
+}
+li {
+  list-style: none;
 }
 
-* {
-  box-sizing: border-box;
+button, i {
+  cursor: pointer;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+/* -------------- media queries ----------------- */
+
+@media screen and (max-width: 680px) {
 }
