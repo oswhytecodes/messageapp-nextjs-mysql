@@ -1,5 +1,3 @@
-// MESSAGES API
-
 import { sql_query } from "../../../lib/db";
 
 export default async function handler(req, res) {
@@ -19,10 +17,10 @@ export default async function handler(req, res) {
   } else if (req.method === "POST") {
     try {
       const querySQL =
-        "INSERT INTO messages (username, userMessage) VALUES (?,?)";
+        "INSERT INTO messages (userID, userMessage) VALUES (?,?)";
       const results = await sql_query({
         query: querySQL,
-        values: [req.body.username, req.body.userMessage],
+        values: [req.body.userId, req.body.userMessage],
       });
       res.json(results);
     } catch (error) {
@@ -30,11 +28,3 @@ export default async function handler(req, res) {
     }
   }
 }
-
-/*
-SELECT users.userID, users.username, messages.userMessage
-FROM users
-INNER JOIN messages ON users.userID=messages.userID
-*/
-
-// const querySQL = "SELECT * FROM messages WHERE userID = 6";

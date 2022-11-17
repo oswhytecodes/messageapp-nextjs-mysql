@@ -4,6 +4,9 @@
   margin-inline: auto;
   max-width: 800px;
   background-color: var(--clr-header);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;
+  
+  position: sticky;
   display: flex;
   justify-content: space-between;
   align-items: flex;
@@ -25,7 +28,7 @@
   color: var(--clr-dark-blue);
 }
 .icon:nth-child(1) {
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 .icon {
   color: white;
@@ -34,5 +37,5 @@
 .icon:hover {
   color: var(--clr-dark-blue);
   opacity: 0.4;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }

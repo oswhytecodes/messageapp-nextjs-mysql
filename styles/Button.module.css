@@ -1,0 +1,36 @@
+.toggle_btns {
+  position: absolute;
+  transform: translate(-58px, -1px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  padding: 0.6em;
+  border: 0.5px solid var(--clr-dark-grey);
+  border-radius: 5px;
+  background-color: var(--clr-header);
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  overflow: hidden;
+}
+.toggle_btns button {
+  color: var(--clr-off-white);
+  font-weight: 700;
+  background-color: transparent;
+  text-transform: uppercase;
+  border: none;
+  font-size: .8em;
+}
+.toggle_btns button:hover {
+  background-color: transparent;
+  text-transform: uppercase;
+  border: none;
+  opacity: .8;
+  font-size: .81em;
+  transition: 0.3s ease-in-out;
+}
+.hr_btn {
+  width: 100%;
+  border-bottom: 0.6px solid white;
+
+  opacity: 0.2;
+}

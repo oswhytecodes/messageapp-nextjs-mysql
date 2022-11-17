@@ -1,17 +1,15 @@
-import { useState } from "react";
 import styles from "../../styles/Input.module.css";
 
-const Input = ({ username, submitMessage }) => {
-  const [userMessage, setUserMessage] = useState("");
-
+const Input = ({ handleChange, submitMessage, userMessage }) => {
   return (
     <section className={styles.container}>
       <form className={styles.form}>
         <div className={styles.text_container}>
           <textarea
             className={styles.textarea}
-            onChange={(e) => setUserMessage(e.target.value)}
+            onChange={handleChange}
             name="message"
+            value={userMessage}
             placeholder="Share Thoughts..."
           ></textarea>
         </div>

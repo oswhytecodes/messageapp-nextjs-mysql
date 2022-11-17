@@ -4,11 +4,13 @@ export default async function handler(req, res) {
   const { userId } = req.query;
   try {
     const querySQL =
-      "SELECT messages.id, users.userID, users.username, messages.userMessage, messages.date FROM users INNER JOIN messages ON users.userID=messages.userID";
+      "SELECT messages.id, users.userID, users.username, messages.userMessage, messages.date FROM users INNER JOIN messages ON users.userID=messages.userID ORDER BY messages.date DESC";
+
     const results = await sql_query({
       query: querySQL,
       values: [req.body.content],
     });
+    
     const updatedResults = results.filter(
       (user) => user.userID === parseInt(userId)
     );

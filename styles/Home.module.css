@@ -1,49 +1,60 @@
 .container {
-  padding: 2rem 3rem;
+  height: 94vh;
   width: min(100% - 12px, 800px);
+  padding: 2rem 3rem;
   margin-inline: auto;
   background-color: var(--clr-off-white);
-  height: 100vh;
+  background: no-repeat url("../public/images/wp1.jpg") ;
+  background-size: 100% 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-.heading {
-  margin-bottom: 1em;
+.home_wp {
+  max-width: 100%;
+  object-fit: cover;
+  height: 90vh;
+  border-radius: 100px;
+  padding: 2rem 1rem;
 }
+
 .main {
   flex: 1;
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 2em;
 }
-.form {
-  width: 100%;
-  max-width: 460px;
-  gap: 0.2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--clr-off-white);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 8px;
-  padding: 20px;
+.main_left {
+  margin-top: 10em;
 }
-.sign_up_header {
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 1em;
-  color: var(--clr-dark-blue);
+.main_left > * {
+  margin-bottom: 0.5em;
+}
+.main_left h1 {
+  color: var(--clr-off-white);
+  font-weight: 500;
+}
+.main_left p {
+  width: 34ch;
+  font-weight: 400;
+  letter-spacing: 0.8px;
 }
 .container_btns {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-top: 1em;
   gap: 1em;
 }
 .btn {
   display: block;
-  background-color: var(--clr-header);
-  color: var(--clr-off-white);
+  background-color: var(--clr-off-white);
+  color: var(--clr-btn);
   margin-top: 0.6em;
   padding: 8px 12px;
   text-transform: uppercase;
@@ -56,21 +67,12 @@
   font-weight: 600;
 }
 .btn:hover {
-  opacity: 0.9;
+  opacity: 0.8;
   color: var(--clr-dark-blue) !important;
   transition: 0.3s ease-in-out;
 }
-.input[type="text"],
-.input[type="password"] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
 
-.input[type="submit"]:hover {
-  background-color: #45a049;
+.footer {
+  font-size: 0.6em;
+  align-self: center;
 }

@@ -14,7 +14,8 @@
   padding: 16px;
   max-height: 800px;
   height: calc(100% - 3em);
-  overflow: scroll;
+  overflow: auto;
+  position: relative;
 }
 .image {
   height: 25px;
@@ -51,6 +52,7 @@
 }
 
 .hr {
-  border-bottom: 0.5px solid var(--clr-dark-blue);
-  margin: 5px -8px;
+  border: none;
+  border-bottom: .0001px solid rgba(195, 195, 195, 0.893);
+  margin: 10px -20px;
 }

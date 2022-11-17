@@ -1,7 +1,8 @@
 import styles from "../../styles/Output.module.css";
+import UserToggle from "../buttons/userToggle";
 
-const Output = ({ messagesList }) => {
-  const message = messagesList.map((item) => {
+const Output = ({ data, deleteMessage, updateMessage }) => {
+  const message = data.map((item) => {
     return (
       <div className={styles.posts} key={item.id}>
         <div className={styles.title}>
@@ -12,12 +13,11 @@ const Output = ({ messagesList }) => {
               &nbsp;
             </span>
           </div>
-          <i 
-            className="fa-solid fa-ellipsis"
-            onClick={() => console.log("clicked")}
+          <UserToggle
+            deleteMessage={deleteMessage}
+            updateMessage={updateMessage}
           />
         </div>
-
         <span className={styles.message}>{item.userMessage}</span>
         <span className={styles.date}>
           {

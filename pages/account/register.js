@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../../components/header/header";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Account.module.css";
 import { useFormik } from "formik";
 import { basicSchema } from "../../lib/schemas";
 
@@ -62,7 +62,6 @@ const Register = () => {
               value={values.username}
               onBlur={handleBlur}
             />
-
             <label htmlFor="password">Password</label>
             <input
               className={styles.input}
@@ -73,7 +72,6 @@ const Register = () => {
               value={values.password}
               onBlur={handleBlur}
             />
-
             <button
               className={styles.btn}
               type="submit"
@@ -82,6 +80,14 @@ const Register = () => {
             >
               sign up
             </button>
+            <div className={styles.login_text}>
+              <p>
+                Already have an account?
+                <Link href="/account/login">
+                  <span className={styles.login_link}>Log In</span>
+                </Link>
+              </p>
+            </div>
           </form>
         </main>
       </div>
