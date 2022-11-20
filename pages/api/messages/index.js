@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         values: [req.body.content],
       });
       // console.log(results);
-      res.json(results);
+      res.status(200).json(results);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

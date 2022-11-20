@@ -28,7 +28,7 @@ const Input = ({ userId, submitMessage }) => {
             placeholder="Share Thoughts..."
           ></textarea>
         </div>
-        {error}
+        <p className={styles.form_error}>{error}</p> 
         <div className={styles.btns}>
           <button className={styles.form_btn} type="submit">
             Submit

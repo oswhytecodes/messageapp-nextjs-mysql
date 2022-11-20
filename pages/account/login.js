@@ -20,21 +20,7 @@ const LogIn = () => {
       password: "",
     },
     validationSchema: basicSchema,
-
-    onSubmit: async (values) => {
-      const response = await fetch(`http://localhost:3000/api/users`, {
-        method: "GET",
-        body: JSON.stringify({
-          username: values.username,
-          password: values.password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      resetForm({ values: "" });
-    },
+    onSubmit: alert("Message added"),
   });
 
   return (

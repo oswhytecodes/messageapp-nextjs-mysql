@@ -2,7 +2,6 @@ import Header from "../../components/header/header";
 import Input from "../../components/message/input";
 import Output from "../../components/message/output";
 import styles from "../../styles/User.module.css";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR, { useSWRConfig } from "swr";
 

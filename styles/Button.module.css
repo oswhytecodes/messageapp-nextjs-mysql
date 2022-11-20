@@ -1,31 +1,25 @@
 .toggle_btns {
-  position: absolute;
-  transform: translate(-58px, -1px);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 0.5em;
-  padding: 0.6em;
-  border: 0.5px solid var(--clr-dark-grey);
+  padding: 0.4em;
   border-radius: 5px;
-  background-color: var(--clr-header);
-  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-  overflow: hidden;
+  width: fit-content;
+  box-shadow: rgba(185, 185, 185, 0.618) 0px 0px 0px 2px;
 }
-.toggle_btns button {
-  color: var(--clr-off-white);
+.toggle_btns i {
+  color: var(--clr-header);
   font-weight: 700;
   background-color: transparent;
-  text-transform: uppercase;
   border: none;
-  font-size: 0.8em;
+  font-size: 1em;
 }
-.toggle_btns button:hover {
-  background-color: transparent;
+.toggle_btns i:hover {
+  color: var(--clr-off-blue);
   text-transform: uppercase;
   border: none;
-  opacity: 0.8;
-  font-size: 0.81em;
+  font-size: 1.1em;
   transition: 0.3s ease-in-out;
 }
 .hr_btn {
@@ -38,7 +32,7 @@
   width: 100%;
 }
 .form_error {
-  padding: .3em;
+  padding: 0.3em;
   font-size: 0.8em;
   color: red;
 }

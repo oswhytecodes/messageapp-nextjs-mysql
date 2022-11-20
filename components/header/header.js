@@ -10,7 +10,7 @@ const Header = ({ username }) => {
         <span className={styles.span}>{username}</span>
       </div>
       <div className={styles.header_icons}>
-        <Link href="/user/10">
+        <Link href="/user/">
           <i className={`fa-solid fa-user ${styles.icon}`}></i>
         </Link>
         <Link href="/">

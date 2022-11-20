@@ -49,6 +49,11 @@
   color: var(--clr-dark-blue) !important;
   transition: 0.3s ease-in-out;
 }
+.form_error {
+  padding: .3em;
+  font-size: 0.8em;
+  color: red;
+}
 @media (max-width: 680px) {
   .container {
     margin-inline: auto;

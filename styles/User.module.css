@@ -8,13 +8,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 1em;
+  margin-top: 2em;
 }
 .message {
   display: flex;
   height: 100vh;
 }
-
+.user_list {
+ padding: .2em;
+}
 @media (max-width: 680px) {
   .message {
     flex-direction: column;
