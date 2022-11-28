@@ -12,11 +12,11 @@ Nov 14 - Dynamic routes for each user
 Nov 21 - Created a edit and delete feature for both the UI and in   the database
 Nov 23 - Filter through messages using a search input field
 ## Project Screen Shot(s)
-<img src="./public/images/ui1.png">
-<img src="./public/images/ui_edit.png">
-<img src="./public/images/ui_delete.png">
-<img src="./public/images/ui_errors.png">
-<img src="./public/images/ui_search.png">
+<img src="./public/screenshots/ui1.png">
+<img src="./public/screenshots/ui_edit.png">
+<img src="./public/screenshots/ui_delete.png">
+<img src="./public/screenshots/ui_errors.png">
+<img src="./public/screenshots/ui_search.png">
 
 ## Installation and Setup Instructions
 
