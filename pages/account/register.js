@@ -5,6 +5,7 @@ import styles from "../../styles/Account.module.css";
 import { useFormik } from "formik";
 import { basicSchema } from "../../lib/schemas";
 
+
 const Register = () => {
   const {
     values,
@@ -52,7 +53,9 @@ const Register = () => {
         <main className={styles.main}>
           <form className={styles.form} onSubmit={handleSubmit}>
             <h1 className={styles.sign_up_header}>Sign Up Form</h1>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">
+              Username <span className={styles.error}> {errors.username}</span>{" "}
+            </label>
             <input
               className={styles.input}
               id="username"
@@ -62,7 +65,10 @@ const Register = () => {
               value={values.username}
               onBlur={handleBlur}
             />
-            <label htmlFor="password">Password</label>
+
+            <label htmlFor="password">
+              Password <span className={styles.error}> {errors.password}</span>
+            </label>
             <input
               className={styles.input}
               id="password"
@@ -72,14 +78,14 @@ const Register = () => {
               value={values.password}
               onBlur={handleBlur}
             />
-            <button
-              className={styles.btn}
-              type="submit"
-              disabled={isSubmitting}
-              onClick={handleSubmit}
-            >
-              sign up
-            </button>
+     
+              <button
+                className={styles.btn}
+                type="submit"
+                disabled={isSubmitting}
+              >
+                sign up
+              </button>
             <div className={styles.login_text}>
               <p>
                 Already have an account?

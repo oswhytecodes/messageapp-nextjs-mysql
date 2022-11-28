@@ -30,13 +30,14 @@
   margin-bottom: 2em;
 }
 .main_left {
-  margin-top: 10em;
+  margin-top: 4em;
 }
 .main_left > * {
   margin-bottom: 0.5em;
 }
 .main_left h1 {
-  color: var(--clr-off-white);
+  color: var(--clr-off-blue);
+  font-size: 3em;
   font-weight: 500;
 }
 .main_left p {

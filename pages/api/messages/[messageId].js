@@ -1,10 +1,11 @@
-import { sql_query } from "../../../lib/db";
+ import { sql_query } from "../../../lib/db";
 
 export default async function handler(req, res) {
   const { messageId } = req.query;
   if (req.method === "PUT") {
     try {
-      const querySQL = "UPDATE messages SET userMessage = ? WHERE id = ?";
+      const querySQL =
+        "UPDATE messages SET userMessage = ?, date = CURRENT_TIMESTAMP WHERE id = ?";
       const results = await sql_query({
         query: querySQL,
         values: [req.body.userMessage, req.body.id],

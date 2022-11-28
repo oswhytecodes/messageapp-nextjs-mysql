@@ -4,7 +4,9 @@ import Header from "../../components/header/header";
 import styles from "../../styles/Account.module.css";
 import { useFormik } from "formik";
 import { basicSchema } from "../../lib/schemas";
+import useSWR from "swr";
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
 const LogIn = () => {
   const {
     values,
@@ -20,9 +22,12 @@ const LogIn = () => {
       password: "",
     },
     validationSchema: basicSchema,
-    onSubmit: alert("Message added"),
+    // onSubmit: alert("Message added"),
   });
-
+  const { data, error } = useSWR(`http://localhost:3000/api/users`, fetcher);
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+  const userId = data.map((id) => id.userID);
   return (
     <div>
       <Head>
@@ -59,15 +64,16 @@ const LogIn = () => {
               value={values.password}
               onBlur={handleBlur}
             />
-
-            <button
-              className={styles.btn}
-              type="submit"
-              disabled={isSubmitting}
-              onClick={handleSubmit}
-            >
-              LOG IN
-            </button>
+            <Link href={`user/${userId}`}>
+              <button
+                className={styles.btn}
+                type="submit"
+                disabled={isSubmitting}
+                onClick={handleSubmit}
+              >
+                LOG IN
+              </button>
+            </Link>
           </form>
         </main>
       </div>

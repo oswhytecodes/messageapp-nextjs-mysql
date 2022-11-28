@@ -16,6 +16,7 @@ const Input = ({ userId, submitMessage }) => {
       setUserMessage("");
     }
   };
+
   return (
     <section className={styles.container}>
       <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
@@ -28,7 +29,7 @@ const Input = ({ userId, submitMessage }) => {
             placeholder="Share Thoughts..."
           ></textarea>
         </div>
-        <p className={styles.form_error}>{error}</p> 
+        <p className={styles.form_error}>{error}</p>
         <div className={styles.btns}>
           <button className={styles.form_btn} type="submit">
             Submit

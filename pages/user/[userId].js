@@ -61,8 +61,8 @@ const User = () => {
       const response = await fetch(`http://localhost:3000/api/messages/${id}`, {
         method: "PUT",
         body: JSON.stringify({
-          id:id,
-          userMessage: message
+          id: id,
+          userMessage: message,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -75,8 +75,52 @@ const User = () => {
     }
   };
 
+  // FAVORITES
+  const addToFavorite = async (messageId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/messages/favorites`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            messageId: messageId,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      mutate(`http://localhost:3000/api/users/${userId}`);
+    } catch (error) {
+      return error;
+    }
+  };
+  const deleteFavorite = async (id, userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/messages/favorites`,
+        {
+          method: "DELETE",
+          body: JSON.stringify({
+            messageId: id,
+            userId: userId,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      mutate(`http://localhost:3000/api/users/${userId}`);
+    } catch (error) {
+      return error;
+    }
+  };
+
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
+
   const username = data.map((user) => user.username);
   username.splice(1);
 
@@ -89,6 +133,8 @@ const User = () => {
           data={data}
           deleteMessage={deleteMessage}
           updateMessage={updateMessage}
+          addToFavorite={addToFavorite}
+          deleteFavorite={deleteFavorite}
         />
       </div>
     </div>

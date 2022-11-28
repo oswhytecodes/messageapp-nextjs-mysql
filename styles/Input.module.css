@@ -46,7 +46,7 @@
 }
 .form_btn:hover {
   opacity: 0.9;
-  color: var(--clr-dark-blue) !important;
+  color: var(--clr-off-white) !important;
   transition: 0.3s ease-in-out;
 }
 .form_error {

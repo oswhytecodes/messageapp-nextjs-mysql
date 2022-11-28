@@ -1,15 +1,16 @@
-// USERS API 
-
+// USERS API
 import { sql_query } from "../../../lib/db";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
-      const querySQL = "SELECT * FROM users";
+      // select the specific data
+      const querySQL = "SELECT username, userID FROM users";
       const results = await sql_query({
         query: querySQL,
         values: [req.body.content],
       });
+
       res.json(results);
     } catch (error) {
       res.status(500).json({ message: error.message });

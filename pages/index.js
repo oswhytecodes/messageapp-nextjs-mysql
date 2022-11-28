@@ -2,8 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/header/header";
 import styles from "../styles/Home.module.css";
-import Image from "next/image";
-import wallpaper from "../public/images/wp1.jpg";
 
 const Home = () => {
   return (
@@ -24,14 +22,17 @@ const Home = () => {
               A Home for
               <br /> your Thoughts.
             </h1>
-            <p>Leave a message on your page and come back to see your thoughts.</p>
+            <p>
+              Leave a message on your page and come back to see your thoughts.
+            </p>
             <div className={styles.container_btns}>
               <Link href="/account/register">
                 <button className={styles.btn}>Sign Up</button>
               </Link>
               <Link href="/account/login">
-                <button className={styles.btn}>Log In <i className="fa-solid fa-arrow-right"></i></button>{" "}
-               
+                <button className={styles.btn}>
+                  Log In <i className="fa-solid fa-arrow-right"></i>
+                </button>{" "}
               </Link>
             </div>
           </div>
