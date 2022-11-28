@@ -7,10 +7,15 @@ A full stack web application using NEXTJS and MYSQL. A messaging app that allows
 ## Project Status
 
 Nov 10 - Connected the NextJS app with MySQL database
+
        - Formik library linked to database
+
 Nov 14 - Dynamic routes for each user
+
 Nov 21 - Created a edit and delete feature for both the UI and in   the database
+
 Nov 23 - Filter through messages using a search input field
+
 ## Project Screen Shot(s)
 <img src="./public/screenshots/ui1.png">
 <img src="./public/screenshots/ui_edit.png">
