@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Project Name & Pitch
 
-## Getting Started
+#### Share Your Thoughts
 
-First, run the development server:
+A full stack web application using NEXTJS and MYSQL. A messaging app that allows for user sign up. Each user is giving a page to add and save messages. Built with JavaScript, React, React hooks, SWR, and CSS.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Project Status
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Nov 10 - Connected the NextJS app with MySQL database
+       - Formik library linked to database
+Nov 14 - Dynamic routes for each user
+Nov 21 - Created a edit and delete feature for both the UI and in   the database
+Nov 23 - Filter through messages using a search input field
+## Project Screen Shot(s)
+<img src="./public/images/ui1.png">
+<img src="./public/images/ui_edit.png">
+<img src="./public/images/ui_delete.png">
+<img src="./public/images/ui_errors.png">
+<img src="./public/images/ui_search.png">
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Installation and Setup Instructions
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Clone down this repository. You will need `node` and `npm` installed globally on your machine.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Installation:
 
-## Learn More
+`npm install`
 
-To learn more about Next.js, take a look at the following resources:
+To Start Server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`npm run dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To Visit App:
 
-## Deploy on Vercel
+`localhost:3000/user`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Reflection
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- What was the context for this project?
+    - To learn and practice developing a fullstack application in NextJs.
+- What did you set out to build?
+    - A full stack CRUD application, 
+
+- Why was this project challenging and therefore a really good learning experience?
+    - As a developer, it's is important to understand how an entire web application flows.
+- What were some unexpected obstacles?
+    - The favorites feature and persisting the data in localstorage
+- What tools did you use to implement this project?
+    - NEXTJS, React, SWR, Formik, MySQL, Sql, Git, Github, VS Code 
