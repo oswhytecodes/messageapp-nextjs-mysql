@@ -6,9 +6,7 @@ A full stack web application using NEXTJS and MYSQL. A messaging app that allows
 
 ## Project Status
 
-Nov 10 - Connected the NextJS app with MySQL database
-
-       - Formik library linked to database
+Nov 10 - Connected the NextJS app with MySQL database, Formik library linked to database
 
 Nov 14 - Dynamic routes for each user
 

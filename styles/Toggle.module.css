@@ -18,11 +18,9 @@
 .trash_icon {
   color: var(--clr-header);
 }
-.heart_icon {
-  color: #7e7878;
-}
+
 .toggle_btns i:hover {
-  color: var(--clr-off-blue);
+  color: var(--clr-dark-blue);
   text-transform: uppercase;
   border: none;
   font-size: 1.1em;
@@ -110,4 +108,13 @@
 .vl {
   border-left: 1px solid var(--clr-off-white);
   height: 40px;
+}
+
+
+/* toggle mode */
+.heart_icon {
+  color: #7e7878;
+}
+.color .heart_icon {
+  color: #8b0000
 }

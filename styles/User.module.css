@@ -33,6 +33,13 @@
   color: var(--clr-off-grey);
   transition: all 0.3s ease-in-out;
 }
+.sun {
+  margin-top: 1em;
+  color: var(--clr-header);
+}
+.moon {
+  margin-top: 1em;
+}
 @media (max-width: 680px) {
   .message {
     flex-direction: column;
@@ -47,3 +54,18 @@
   }
 }
 
+/* dark mode */
+.dark {
+  background-color: var(--clr-off-grey);
+}
+.dark .container {
+  background-color: var(--clr-btn);
+  color: var(--clr-dark-blue);
+}
+.dark .list_item {
+  background-color: var(--clr-off-white);
+  color: var(--clr-dark-blue);
+}
+.dark .moon {
+  color: var(--clr-off-white);
+}

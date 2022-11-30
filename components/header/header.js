@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "../../styles/Header.module.css";
 
-const Header = ({ username }) => {
+const Header = ({ username}) => {
   return (
     <header className={styles.header}>
       <div className={styles.header_left}>
