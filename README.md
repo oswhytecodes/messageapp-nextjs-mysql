@@ -4,19 +4,16 @@ A full stack web application using NEXTJS and MYSQL. A messaging app that allows
 
 ## Project Status
 
-<<<<<<< HEAD
-Nov 10 - Connected the NextJS app with MySQL database, Formik library linked to database
-=======
 Nov 10 - Connected the NextJS app with MySQL database. Formik library linked to database
->>>>>>> ee1158c36e7c283b5f588cef9696cb02b655c7c9
 
 Nov 14 - Dynamic routes for each user
 
-Nov 21 - Created a edit and delete feature for both the UI and in   the database
+Nov 21 - Created a edit and delete feature for both the UI and in the database
 
 Nov 23 - Filter through messages using a search input field
 
 ## Project Screen Shot(s)
+
 <img src="./public/screenshots/ui1.png">
 <img src="./public/screenshots/ui_edit.png">
 <img src="./public/screenshots/ui_delete.png">
@@ -42,13 +39,14 @@ To Visit App:
 ## Reflection
 
 - What was the context for this project?
-    - To learn and practice developing a fullstack application in NextJs.
+  - To learn and practice developing a fullstack application in NextJs.
 - What did you set out to build?
-    - A full stack CRUD application, 
+
+  - A full stack CRUD application,
 
 - Why was this project challenging and therefore a really good learning experience?
-    - As a developer, it's is important to understand how an entire web application flows.
+  - As a developer, it's is important to understand how an entire web application flows.
 - What were some unexpected obstacles?
-    - The favorites feature and persisting the data in localstorage
+  - The favorites feature and persisting the data in localstorage
 - What tools did you use to implement this project?
-    - NEXTJS, React, SWR, Formik, MySQL, Sql, Git, Github, VS Code 
+  - NEXTJS, React, SWR, Formik, MySQL, Sql, Git, Github, VS Code
