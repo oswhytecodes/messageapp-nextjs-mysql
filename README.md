@@ -1,12 +1,14 @@
-## Project Name & Pitch
-
-#### Share Your Thoughts
+## Share Your Thoughts
 
 A full stack web application using NEXTJS and MYSQL. A messaging app that allows for user sign up. Each user is giving a page to add and save messages. Built with JavaScript, React, React hooks, SWR, and CSS.
 
 ## Project Status
 
+<<<<<<< HEAD
 Nov 10 - Connected the NextJS app with MySQL database, Formik library linked to database
+=======
+Nov 10 - Connected the NextJS app with MySQL database. Formik library linked to database
+>>>>>>> ee1158c36e7c283b5f588cef9696cb02b655c7c9
 
 Nov 14 - Dynamic routes for each user
 
