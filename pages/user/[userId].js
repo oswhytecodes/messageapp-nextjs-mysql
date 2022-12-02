@@ -3,12 +3,16 @@ import Input from "../../components/message/input";
 import Output from "../../components/message/output";
 import styles from "../../styles/User.module.css";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import useSWR, { useSWRConfig } from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const User = () => {
   const router = useRouter();
+  const { theme } = useContext(AppContext);
+
   const { userId } = router.query;
   const { data, error } = useSWR(
     userId ? `http://localhost:3000/api/users/${userId}` : null,
@@ -125,17 +129,19 @@ const User = () => {
   username.splice(1);
 
   return (
+      <div className={styles[theme]}>
     <div className={styles.container}>
-      <Header username={username} />
-      <div className={styles.message}>
-        <Input userId={userId} submitMessage={submitMessage} />
-        <Output
-          data={data}
-          deleteMessage={deleteMessage}
-          updateMessage={updateMessage}
-          addToFavorite={addToFavorite}
-          deleteFavorite={deleteFavorite}
-        />
+        <Header username={username} />
+        <div className={styles.message}>
+          <Input userId={userId} submitMessage={submitMessage} />
+          <Output
+            data={data}
+            deleteMessage={deleteMessage}
+            updateMessage={updateMessage}
+            addToFavorite={addToFavorite}
+            deleteFavorite={deleteFavorite}
+          />
+        </div>
       </div>
     </div>
   );

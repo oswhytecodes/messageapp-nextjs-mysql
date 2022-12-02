@@ -1,8 +1,10 @@
 import styles from "../../styles/Input.module.css";
 import { useState } from "react";
-
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 const Input = ({ userId, submitMessage }) => {
   // fix logic in Input component
+  const { theme } = useContext(AppContext);
   const [userMessage, setUserMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -18,25 +20,28 @@ const Input = ({ userId, submitMessage }) => {
   };
 
   return (
-    <section className={styles.container}>
-      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
-        <div className={styles.text_container}>
-          <textarea
-            className={styles.textarea}
-            name="message"
-            value={userMessage}
-            onChange={(e) => setUserMessage(e.target.value)}
-            placeholder="Share Thoughts..."
-          ></textarea>
+      <div className={styles.input_container}>
+        <div className={styles[theme]}>
+
+        <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
+          <div className={styles.text_container}>
+            <textarea
+              className={styles.textarea}
+              name="message"
+              value={userMessage}
+              onChange={(e) => setUserMessage(e.target.value)}
+              placeholder="Share Thoughts..."
+            ></textarea>
+          </div>
+          <p className={styles.form_error}>{error}</p>
+          <div className={styles.btns}>
+            <button className={styles.form_btn} type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
         </div>
-        <p className={styles.form_error}>{error}</p>
-        <div className={styles.btns}>
-          <button className={styles.form_btn} type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
-    </section>
+      </div>
   );
 };
 

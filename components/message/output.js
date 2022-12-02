@@ -1,7 +1,8 @@
 import styles from "../../styles/Output.module.css";
 import stylesT from "../../styles/Toggle.module.css";
 import { useState, useEffect, useMemo } from "react";
-
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 // Data Output for the UI
 const Output = ({
   data,
@@ -10,6 +11,8 @@ const Output = ({
   addToFavorite,
   deleteFavorite,
 }) => {
+  const { theme } = useContext(AppContext);
+
   const [toggle, setToggle] = useState({});
   const toggleEdit = (id) =>
     setToggle({
@@ -23,43 +26,32 @@ const Output = ({
       [id]: !toggleModal[id],
     });
   };
-  // favorite button
-  const [favorite, setFavorite] = useState({});
-  const [toggleFav, setToggleFav] = useState({});
-  const [ color, setColor] = useState(false)
 
-  useEffect(() => {
-    let faves = JSON.parse(localStorage.getItem("favorites"));
-    // return the current value
-    if (faves) {
-      setColor(faves);
-    }
-  }, []);
+  const [color, setColor] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || {}
+  );
+  const [toggleFav, setToggleFav] = useState({});
 
   const toggleFavButton = (id, userId) => {
     setToggleFav({
       ...toggleFav,
       [id]: !toggleFav[id],
     });
-    if (!toggleFav[id] ) {
+    if (!toggleFav[id]) {
       addToFavorite(id);
-      
+      setColor({
+        ...color,
+        [id]: "#990F02",
+      });
     } else {
       deleteFavorite(id, userId);
+      setColor({
+        ...color,
+        [id]: "#7e7878",
+      });
     }
   };
-  const handleClick = (id, userId) => {
-    toggleFavButton(id, userId);
-    setFavorite({...favorite, [id]: !favorite[id] });
-    setColor(prev => !prev)
-  };
-
   useEffect(() => {
-    if (color) {
-      document.body.classList.add(stylesT["color"]);
-    } else {
-      document.body.classList.remove(stylesT["color"]);
-    }
     localStorage.setItem("favorites", JSON.stringify(color));
   }, [color]);
 
@@ -83,19 +75,22 @@ const Output = ({
                 &nbsp;
               </span>
             </div>
-            <div className={stylesT.toggle_btns}>
-              <i
-                onClick={() => toggleEdit(item.id)}
-                className={`fa-solid fa-pen ${stylesT.pen_icon}`}
-              ></i>
-              <i
-                onClick={() => toggleModalButton(item.id)}
-                className={`fa-solid fa-trash ${stylesT.trash_icon}`}
-              ></i>
-              <i
-                onClick={() => handleClick(item.id, item.userID)}
-                className={`fa-regular fa-heart ${stylesT.heart_icon}`}
-              ></i>
+            <div className={stylesT[theme]}>
+              <div className={stylesT.toggle_btns}>
+                <i
+                  onClick={() => toggleEdit(item.id)}
+                  className={`fa-solid fa-pen ${stylesT.pen_icon}`}
+                ></i>
+                <i
+                  onClick={() => toggleModalButton(item.id)}
+                  className={`fa-solid fa-trash ${stylesT.trash_icon}`}
+                ></i>
+                <i
+                  style={{ color: color[item.id] }}
+                  onClick={() => toggleFavButton(item.id, item.userID)}
+                  className={`fa-regular fa-heart ${stylesT.heart_icon}`}
+                ></i>
+              </div>
             </div>
           </div>
           <div>
@@ -127,17 +122,22 @@ const Output = ({
       );
     });
   return (
-    <section className={styles.container}>
-      <div className={styles.list}>
-        <SearchMessages value={value} setValue={setValue} />
-        {messages}
+    <div className={styles.output_container}>
+      <div className={styles[theme]}>
+        <div className={styles.list}>
+          <SearchMessages value={value} setValue={setValue} />
+          {messages}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 export default Output;
 
+// Toggle Edit input form
 const Toggle = ({ updateMessage, itemId, toggle, setToggle }) => {
+  const { theme } = useContext(AppContext);
+
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -155,7 +155,7 @@ const Toggle = ({ updateMessage, itemId, toggle, setToggle }) => {
     }
   };
   return (
-    <div>
+    <div className={stylesT[theme]}>
       <form
         className={stylesT.form}
         style={{ display: toggle[itemId] ? "flex" : "none" }}
@@ -180,42 +180,48 @@ const Toggle = ({ updateMessage, itemId, toggle, setToggle }) => {
   );
 };
 
+// Modal component for deleting messages
 const DeleteModal = ({
   deleteMessage,
   itemId,
   toggleModal,
   toggleModalButton,
 }) => {
+  const { theme } = useContext(AppContext);
+
   return (
-    <div
-      style={{ display: toggleModal[itemId] ? "flex" : "none" }}
-      className={stylesT.modal_container}
-    >
-      <div className={stylesT.modal}>
-        <p className={stylesT.text}>
-          Are you sure you want to delete this message?
-        </p>
-        <hr className={stylesT.hr} />
-        <div className={stylesT.btn_container}>
-          <button
-            onClick={() => toggleModalButton(itemId)}
-            className={stylesT.modal_btn}
-          >
-            Keep
-          </button>
-          <div className={stylesT.vl}></div>
-          <button
-            onClick={() => deleteMessage(itemId)}
-            className={stylesT.modal_btn}
-          >
-            Delete
-          </button>
+    <div className={stylesT[theme]}>
+      <div
+        style={{ display: toggleModal[itemId] ? "flex" : "none" }}
+        className={stylesT.modal_container}
+      >
+        <div className={stylesT.modal}>
+          <p className={stylesT.text}>
+            Are you sure you want to delete this message?
+          </p>
+          <hr className={stylesT.hr} />
+          <div className={stylesT.btn_container}>
+            <button
+              onClick={() => toggleModalButton(itemId)}
+              className={stylesT.modal_btn}
+            >
+              Keep
+            </button>
+            <div className={stylesT.vl}></div>
+            <button
+              onClick={() => deleteMessage(itemId)}
+              className={stylesT.modal_btn}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
+// Filter through messages
 export const SearchMessages = ({ value, setValue }) => {
   const [toggleSearch, setToggleSearch] = useState(true);
   const toggleSearchInput = () => setToggleSearch(!toggleSearch);
@@ -242,7 +248,10 @@ export const SearchMessages = ({ value, setValue }) => {
         className={`fas fa-search ${styles.search_icon}`}
       >
         <p
-          style={{ fontSize: ".7em", display: toggleSearch ? "flex" : "none" }}
+          style={{
+            fontSize: ".7em",
+            display: toggleSearch ? "flex" : "none",
+          }}
         >
           Search Messages
         </p>
@@ -250,38 +259,3 @@ export const SearchMessages = ({ value, setValue }) => {
     </div>
   );
 };
-
-// const toggleFavButton = (id, userId) => {
-//   setToggleFav({
-//     ...toggleFav,
-//     [id]: !toggleFav[id], // id = the MESSAGE id
-//   });
-//   if (!toggleFav[id]) {
-//     addToFavorite(id);
-//   } else {
-//     deleteFavorite(id, userId);
-//   }
-//   console.log(toggleFav);
-// };
-
-// TOGGLE favorite STATE
-// // const [toggleFav, setToggleFav] = useState({});
-// const [toggleFav, setToggleFav] = useState(
-//   JSON.parse(localStorage.getItem("favorites")) || {}
-// );
-// // add/delete favorites
-
-// const toggleFavButton = (id, userId) => {
-//   const newFav = {
-//     ...toggleFav,
-//     [id]: !toggleFav[id], // id = the MESSAGE id
-//   };
-//   localStorage.setItem("favorites", JSON.stringify({...toggleFav}))
-//   setToggleFav(newFav);
-//   if (!toggleFav[id]) {
-//     addToFavorite(id);
-//   } else {
-//     deleteFavorite(id, userId);
-//   }
-//   console.log(toggleFav);
-// };

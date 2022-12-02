@@ -1,0 +1,53 @@
+.container {
+  width: min(100% - 20px, 800px);
+  height: 100vh;
+  margin-inline: auto;
+}
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 0 2em;
+  margin-top: 2em;
+}
+
+.list_item {
+  width: 13em;
+  height: 4em;
+  padding: 0.3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 10px;
+  background-color: rgba(146, 146, 146, 0.2);
+}
+.list_item:hover {
+  background-color: var(--clr-header);
+  color: var(--clr-off-grey);
+  transition: all 0.3s ease-in-out;
+}
+/* dark mode */
+.light {
+  background-color: var(--clr-off-grey);
+}
+.dark {
+  background-color: var(--clr-dark-grey);
+}
+
+.light .container {
+  background-color: var(--clr-off-white);
+}
+.dark .container {
+  background-color: var(--clr-header);
+}
+.dark .list_item {
+  background-color: var(--clr-off-white);
+  color: var(--clr-dark-blue);
+}
+.dark .list_item:hover {
+  background-color: var(--clr-black);
+  color: var(--clr-off-white);
+}

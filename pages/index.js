@@ -2,10 +2,12 @@ import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/header/header";
 import styles from "../styles/Home.module.css";
-
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 const Home = () => {
+  const { theme } = useContext(AppContext);
   return (
-    <div>
+    <div className={`${styles[theme]} ${theme}`}>
       <Head>
         <title>Share Your Thoughts</title>
         <meta

@@ -1,15 +1,23 @@
-.container {
-  display: flex;
-  position: relative;
-  z-index: 1000;
-  background-color: var(--clr-off-white);
-  padding: 3em 2em;
+.input_container {
+  display: grid;
+  align-items: center;
+  position: sticky;
+  padding: 2em 0;
+  justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.25) 2px 0 16px;
   font-family: "Poppins", sans-serif;
+  grid-area: 1 / 1 / 2 / 3;
+}
+.light .input_container {
+  background-color: var(--clr-off-white);
+}
+.dark .input_container {
+  background-color: var(--clr-off-white);
 }
 .form {
   display: flex;
   flex-direction: column;
+  height: 90vh;
 }
 .text_container {
   width: 100%;
@@ -19,7 +27,9 @@
   padding: 12px;
   border: 0.3px gray solid;
   height: 6em;
+  max-height: 8em;
   width: 100%;
+  max-width: 14em;
   border-radius: 8px;
   width: fit-content;
   background-color: var(--clr-off-white);
@@ -33,7 +43,7 @@
 .form_btn {
   background-color: var(--clr-header);
   color: var(--clr-off-white);
-  margin-top: 0.6em;
+  margin-top: 0.2em;
   padding: 8px 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -44,22 +54,34 @@
   font-size: 1rem;
   font-weight: 600;
 }
+.dark .form_btn {
+  background-color: var(--clr-black);
+}
 .form_btn:hover {
   opacity: 0.9;
   color: var(--clr-off-white) !important;
   transition: 0.3s ease-in-out;
 }
+.dark .form_btn:hover {
+  opacity: 0.9;
+  color: var(--clr-dark-grey) !important;
+  transition: 0.3s ease-in-out;
+}
 .form_error {
-  padding: .3em;
+  padding: 0.3em;
   font-size: 0.8em;
   color: red;
 }
 @media (max-width: 680px) {
-  .container {
+  .input_container {
     margin-inline: auto;
     width: 100%;
+    height: 35vh;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+  }
+  .textarea {
+    max-width: 20em;
   }
 }

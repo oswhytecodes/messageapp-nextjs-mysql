@@ -11,20 +11,28 @@
   /* outline: 1px solid red; */
 }
 :root {
-  --clr-off-white: #e5e5e5;
-  --clr-off-grey: #dcdcdc;
-  --clr-dark-grey: #7e7878;
-  --clr-header: #456293;
+  --clr-off-white: #dbdbdb;
+  --clr-off-grey: #e0e0e0;
+  --clr-dark-grey: #b3b3b3;
+  --clr-header: #607ba9;
   --clr-btn: #59748c;
   --clr-dark-blue: #2c3843;
   --clr-dark-blue-opa: #1b1f223d;
+  --clr-black: #2a3b55;
   --ff-font-family: "Poppins", "serif";
 }
 
 body {
   font-family: var(--ff-font-family);
-  background-color: rgb(211, 211, 211);
+  /* background-color: rgb(181, 181, 181); */
 }
+.light body {
+  background-color: rgb(62, 224, 111);
+}
+.dark body {
+  background-color: rgb(152, 9, 9);
+}
+
 a {
   color: inherit;
   text-decoration: none;
