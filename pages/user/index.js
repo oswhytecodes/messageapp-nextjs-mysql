@@ -1,4 +1,3 @@
-import Header from "../../components/header/header";
 import styles from "../../styles/Users.module.css";
 import Link from "next/link";
 import useSWR from "swr";
@@ -32,7 +31,6 @@ const UserHome = () => {
   return (
     <div className={styles[theme]}>
       <div className={styles.container}>
-        <Header />
         <div
           style={{ display: "flex", justifyContent: "center", padding: ".5em" }}
         ></div>

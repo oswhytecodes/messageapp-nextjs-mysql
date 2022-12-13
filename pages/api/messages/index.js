@@ -17,10 +17,10 @@ export default async function handler(req, res) {
   } else if (req.method === "POST") {
     try {
       const querySQL =
-        "INSERT INTO messages (userID, userMessage) VALUES (?,?)";
+        "INSERT INTO messages (userID, userMessage, favorite) VALUES (?,?,?)";
       const results = await sql_query({
         query: querySQL,
-        values: [req.body.userId, req.body.userMessage],
+        values: [req.body.userId, req.body.userMessage, req.body.favorite],
       });
       res.json(results);
     } catch (error) {

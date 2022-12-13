@@ -1,4 +1,3 @@
-import Header from "../../components/header/header";
 import Input from "../../components/message/input";
 import Output from "../../components/message/output";
 import styles from "../../styles/User.module.css";
@@ -28,6 +27,7 @@ const User = () => {
         body: JSON.stringify({
           userId,
           userMessage,
+          favorite: 0,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,6 @@ const User = () => {
   };
 
   const deleteMessage = async (id) => {
-    console.log(id);
     try {
       const response = await fetch(`http://localhost:3000/api/messages`, {
         method: "DELETE",
@@ -122,6 +121,7 @@ const User = () => {
     }
   };
 
+
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
@@ -129,9 +129,8 @@ const User = () => {
   username.splice(1);
 
   return (
-      <div className={styles[theme]}>
-    <div className={styles.container}>
-        <Header username={username} />
+    <div className={styles[theme]}>
+      <div className={styles.container}>
         <div className={styles.message}>
           <Input userId={userId} submitMessage={submitMessage} />
           <Output

@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       const querySQL =
-        "INSERT INTO favorites SELECT id, userID, userMessage, date FROM messages WHERE id = ?";
+        "UPDATE messages SET favorite = 1 - favorite WHERE id = ?";
       const results = await sql_query({
         query: querySQL,
         values: [req.body.messageId],
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   } else if (req.method === "DELETE") {
     try {
       const querySQL =
-        "DELETE FROM favorites WHERE messageID = ? AND userID = ?";
+        "UPDATE messages SET favorite = 1 - favorite WHERE id = ? AND userID = ?";
       const results = await sql_query({
         query: querySQL,
         values: [req.body.messageId, req.body.userId],
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === "GET") {
     try {
-      const querySQL = "SELECT * FROM favorites";
+      const querySQL = "SELECT * FROM messages WHERE favorite = 1";
       const results = await sql_query({
         query: querySQL,
         values: [req.body.content],

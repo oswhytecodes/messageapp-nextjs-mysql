@@ -1,6 +1,6 @@
 .input_container {
   display: grid;
-  align-items: center;
+  align-items: flex-start;
   position: sticky;
   padding: 2em 0;
   justify-content: center;
@@ -83,5 +83,8 @@
   }
   .textarea {
     max-width: 20em;
+  }
+  .form {
+    height: 25vh;
   }
 }

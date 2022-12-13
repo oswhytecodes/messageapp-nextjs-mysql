@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import Header from "../../components/header/header";
+import Header from "../header/header";
 import styles from "../../styles/Account.module.css";
 import { useFormik } from "formik";
 import { basicSchema } from "../../lib/schemas";
-
 
 const Register = () => {
   const {
@@ -78,14 +77,14 @@ const Register = () => {
               value={values.password}
               onBlur={handleBlur}
             />
-     
-              <button
-                className={styles.btn}
-                type="submit"
-                disabled={isSubmitting}
-              >
-                sign up
-              </button>
+
+            <button
+              className={styles.btn}
+              type="submit"
+              disabled={isSubmitting}
+            >
+              sign up
+            </button>
             <div className={styles.login_text}>
               <p>
                 Already have an account?

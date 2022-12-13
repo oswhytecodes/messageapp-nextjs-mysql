@@ -1,8 +1,9 @@
 import styles from "../../styles/Output.module.css";
 import stylesT from "../../styles/Toggle.module.css";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import List from "./list";
 // Data Output for the UI
 const Output = ({
   data,
@@ -26,7 +27,6 @@ const Output = ({
       [id]: !toggleModal[id],
     });
   };
-
   const [color, setColor] = useState(
     JSON.parse(localStorage.getItem("favorites")) || {}
   );
@@ -56,6 +56,12 @@ const Output = ({
   }, [color]);
 
   const [value, setValue] = useState("");
+  // toglle tabs
+  const [toggleTab, setToggleTab] = useState(1);
+  const handleTab = (tabNum) => {
+    setToggleTab(tabNum);
+    setValue("");
+  };
   const messages = data // render and filter messages
     .filter((item) => {
       if (value === "") {
@@ -66,67 +72,54 @@ const Output = ({
     })
     .map((item) => {
       return (
-        <div className={styles.posts} key={item.id}>
-          <div className={styles.title}>
-            <div className={styles.title_left}>
-              <div className={styles.image}></div>
-              <span className={styles.title_name}>
-                {item.username}
-                &nbsp;
-              </span>
-            </div>
-            <div className={stylesT[theme]}>
-              <div className={stylesT.toggle_btns}>
-                <i
-                  onClick={() => toggleEdit(item.id)}
-                  className={`fa-solid fa-pen ${stylesT.pen_icon}`}
-                ></i>
-                <i
-                  onClick={() => toggleModalButton(item.id)}
-                  className={`fa-solid fa-trash ${stylesT.trash_icon}`}
-                ></i>
-                <i
-                  style={{ color: color[item.id] }}
-                  onClick={() => toggleFavButton(item.id, item.userID)}
-                  className={`fa-regular fa-heart ${stylesT.heart_icon}`}
-                ></i>
-              </div>
-            </div>
-          </div>
-          <div>
-            <span className={styles.message}>{item.userMessage}</span>
-          </div>
-
-          {/* update button hidden by toggle */}
-          <Toggle
-            updateMessage={updateMessage}
-            itemId={item.id}
-            toggle={toggle}
-            setToggle={setToggle}
-          />
-          <DeleteModal
-            itemId={item.id}
-            deleteMessage={deleteMessage}
-            toggleModal={toggleModal}
-            setToggleModal={setToggleModal}
-            toggleModalButton={toggleModalButton}
-          />
-          <span className={styles.date}>
-            {
-              (new Date(item.date).toDateString(),
-              new Date(item.date).toLocaleString())
-            }
-          </span>
-          <hr className={styles.hr} />
-        </div>
+       <List
+          item={item}
+          itemId={item.id}
+          color={color}
+          updateMessage={updateMessage}
+          toggle={toggle}
+          setToggle={setToggle}
+          toggleEdit={toggleEdit}
+          deleteMessage={deleteMessage}
+          toggleModal={toggleModal}
+          toggleFavButton={toggleFavButton}
+          toggleModalButton={toggleModalButton}
+        />
       );
     });
+
+  const favorites = data.map((item) => {
+    if (item.favorite === 1) {
+      return (
+        <List
+          item={item}
+          itemId={item.id}
+          color={color}
+          updateMessage={updateMessage}
+          toggle={toggle}
+          setToggle={setToggle}
+          toggleEdit={toggleEdit}
+          deleteMessage={deleteMessage}
+          toggleModal={toggleModal}
+          toggleFavButton={toggleFavButton}
+          toggleModalButton={toggleModalButton}
+        />
+      );
+    }
+  });
   return (
     <div className={styles.output_container}>
       <div className={styles[theme]}>
-        <div className={styles.list}>
-          <SearchMessages value={value} setValue={setValue} />
-          {messages}
+        <div className={styles.list_container}>
+          <FilterAndSearch
+            toggleTab={toggleTab}
+            handleTab={handleTab}
+            value={value}
+            setValue={setValue}
+          />
+          <div className={styles.list}>
+            {toggleTab === 2 ? favorites : messages}
+          </div>
         </div>
       </div>
     </div>
@@ -134,13 +127,76 @@ const Output = ({
 };
 export default Output;
 
+// Filter through messages
+export const FilterAndSearch = ({ value, setValue, toggleTab, handleTab }) => {
+  const [toggleSearch, setToggleSearch] = useState(true);
+  const toggleSearchInput = () => setToggleSearch(!toggleSearch);
+
+  return (
+    <div className={styles.tab_container}>
+      <div
+        className={
+          toggleTab === 1 ? `${styles.tab} ${styles.active_tab}` : styles.tab
+        }
+        onClick={() => handleTab(1)}
+      >
+        Messages
+      </div>
+      <div
+        className={
+          toggleTab === 2 ? `${styles.tab} ${styles.active_tab}` : styles.tab
+        }
+        onClick={() => handleTab(2)}
+      >
+        Favorites
+      </div>
+      <div
+        className={
+          toggleTab === 3 ? `${styles.tab} ${styles.active_tab}` : styles.tab
+        }
+        onClick={() => handleTab(3)}
+      >
+        <div className={styles.searchbar}>
+          <form
+            style={{ display: toggleSearch ? "none" : "flex" }}
+            onSubmit={(e) => e.preventDefault()}
+            action=""
+          >
+            <input
+              className={styles.searchbar_input}
+              onChange={(e) => setValue(e.target.value)}
+              type="text"
+              value={value}
+              name="value"
+              placeholder="Search ..."
+            />
+            <i
+              className={`fa-solid fa-xmark ${styles.x_icon}`}
+              onClick={toggleSearchInput}
+            ></i>
+          </form>
+          <p
+            onClick={toggleSearchInput}
+            className={styles.search_icon}
+            style={{
+              display: toggleSearch ? "flex" : "none",
+            }}
+          >
+            Search
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Toggle Edit input form
-const Toggle = ({ updateMessage, itemId, toggle, setToggle }) => {
+export const Toggle = ({ updateMessage, itemId, toggle, setToggle }) => {
   const { theme } = useContext(AppContext);
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-
+  console.log(itemId);
   // handleSubmit takes care of submit button, removes the need for onclick
   const handleSubmit = (e, itemId) => {
     // Check if message is too short or setError
@@ -181,7 +237,7 @@ const Toggle = ({ updateMessage, itemId, toggle, setToggle }) => {
 };
 
 // Modal component for deleting messages
-const DeleteModal = ({
+export const DeleteModal = ({
   deleteMessage,
   itemId,
   toggleModal,
@@ -221,41 +277,69 @@ const DeleteModal = ({
   );
 };
 
-// Filter through messages
-export const SearchMessages = ({ value, setValue }) => {
-  const [toggleSearch, setToggleSearch] = useState(true);
-  const toggleSearchInput = () => setToggleSearch(!toggleSearch);
 
-  return (
-    <div className={styles.searchbar}>
-      <form
-        style={{ display: toggleSearch ? "none" : "flex" }}
-        onSubmit={(e) => e.preventDefault()}
-        action=""
-      >
-        <input
-          className={styles.searchbar_input}
-          onChange={(e) => setValue(e.target.value)}
-          type="text"
-          value={value}
-          name="value"
-          placeholder="Search messages..."
-        />
-      </form>
-      <i
-        style={{ display: "flex", alignItems: "center" }}
-        onClick={toggleSearchInput}
-        className={`fas fa-search ${styles.search_icon}`}
-      >
-        <p
-          style={{
-            fontSize: ".7em",
-            display: toggleSearch ? "flex" : "none",
-          }}
-        >
-          Search Messages
-        </p>
-      </i>
-    </div>
-  );
-};
+
+// const messages = data // render and filter messages
+  //   .filter((item) => {
+  //     if (value === "") {
+  //       return item;
+  //     } else {
+  //       return item.userMessage.toLowerCase().includes(value.toLowerCase());
+  //     }
+  //   })
+  //   .map((item) => {
+  //     return (
+  //       <div className={styles.posts} key={item.id}>
+  //         <div className={styles.title}>
+  //           <div className={styles.title_left}>
+  //             <div className={styles.image}></div>
+  //             <span className={styles.title_name}>
+  //               {item.username}
+  //               &nbsp;
+  //             </span>
+  //           </div>
+  //           <div className={stylesT[theme]}>
+  //             <div className={stylesT.toggle_btns}>
+  //               <i
+  //                 onClick={() => toggleEdit(item.id)}
+  //                 className={`fa-solid fa-pen ${stylesT.pen_icon}`}
+  //               ></i>
+  //               <i
+  //                 onClick={() => toggleModalButton(item.id)}
+  //                 className={`fa-solid fa-trash ${stylesT.trash_icon}`}
+  //               ></i>
+  //               <i
+  //                 style={{ color: color[item.id] }}
+  //                 onClick={() => toggleFavButton(item.id, item.userID)}
+  //                 className={`fa-regular fa-heart ${stylesT.heart_icon}`}
+  //               ></i>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div>
+  //           <span className={styles.message}>{item.userMessage}</span>
+  //         </div>
+  //         {/* update button hidden by toggle */}
+  //         <Toggle
+  //           updateMessage={updateMessage}
+  //           itemId={item.id}
+  //           toggle={toggle}
+  //           setToggle={setToggle}
+  //         />
+  //         <DeleteModal
+  //           itemId={item.id}
+  //           deleteMessage={deleteMessage}
+  //           toggleModal={toggleModal}
+  //           setToggleModal={setToggleModal}
+  //           toggleModalButton={toggleModalButton}
+  //         />
+  //         <span className={styles.date}>
+  //           {
+  //             (new Date(item.date).toDateString(),
+  //             new Date(item.date).toLocaleString())
+  //           }
+  //         </span>
+  //         <hr className={styles.hr} />
+  //       </div>
+  //     );
+  //   });

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import Header from "../../components/header/header";
+import Header from "../header/header";
 import styles from "../../styles/Account.module.css";
 import { useFormik } from "formik";
 import { basicSchema } from "../../lib/schemas";
